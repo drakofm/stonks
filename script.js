@@ -213,7 +213,15 @@ class InvestmentPortfolio {
   }
 
   calculateMarketPrice() {
-    this.marketPrice = Array.from(this.items).reduce((sum, item) => sum + (item[1].sharesCount * Number(document.getElementById(`price-${item[1].id}`).textContent.replace('$', ''))), 0);
+    // это было актуально, когда this.items были Map(), но теперь это Object
+    // this.marketPrice = Array.from(this.items).reduce((sum, item) => sum + (item[1].sharesCount * Number(document.getElementById(`price-${item[1].id}`).textContent.replace('$', ''))), 0);
+    
+    let tempMarketPrice = 0;
+    for (let i of Object.values(this.items)) {
+      console.log(tempMarketPrice);
+      tempMarketPrice += (i.sharesCount * Number(document.getElementById(`price-${i.id}`).textContent.replace('$', '')))
+    }
+    this.marketPrice = tempMarketPrice;
   }
 }
 
