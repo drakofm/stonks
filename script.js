@@ -287,20 +287,16 @@ const pricesChange = () => {
   }
 };
 
-const elementSmoothHide = (elem, fadeInterval = 8, fadeDuration = 800) => {
+const elementSmoothHide = (elem, fadeInterval = 8) => {
   elem.style.opacity = 1;
-  setTimeout(() => {
-    const tempInterval = setInterval(() => {
-      elem.style.opacity -= 0.01;
-      if (elem.style.opacity == 0) {
-        clearInterval(tempInterval);
-      };
-    }, fadeInterval);
-  });
-  setTimeout( () => {
-    elem.remove();
-  }, fadeDuration);
-};
+  const tempInterval = setInterval(() => {
+    elem.style.opacity -= 0.01;
+    if (elem.style.opacity <= 0) {
+      elem.remove();
+      clearInterval(tempInterval);
+    };
+  }, fadeInterval);
+  };
 
 const elementSmoothPopup = (elem, popUpInterval = 10, popUpDuration = 300) => {
   setTimeout(() => {
@@ -322,7 +318,7 @@ const eventRandomPickFromEventsArray = () => {
         <span class="running-line" id="running-line-${currentRunningLineTimestamp}">${currentRandomEventText}</span>  
       `);
       setTimeout(() => {
-        elementSmoothHide(document.getElementById(`running-line-${currentRunningLineTimestamp}`), 10, 1000)}
+        elementSmoothHide(document.getElementById(`running-line-${currentRunningLineTimestamp}`), 15)}
         , 3000);
     };
 
