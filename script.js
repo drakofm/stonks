@@ -218,7 +218,6 @@ class InvestmentPortfolio {
     
     let tempMarketPrice = 0;
     for (let i of Object.values(this.items)) {
-      console.log(tempMarketPrice);
       tempMarketPrice += (i.sharesCount * Number(document.getElementById(`price-${i.id}`).textContent.replace('$', '')))
     }
     this.marketPrice = tempMarketPrice;
@@ -287,6 +286,8 @@ const pricesChange = () => {
   }
 };
 
+/* оставлено, чтобы в будущем сделать совместимым со старыми версиями IE и др., где не работает requestAnimationFrame;
+
 const elementSmoothHide = (elem, fadeInterval = 8) => {
   elem.style.opacity = 1;
   const tempInterval = setInterval(() => {
@@ -296,7 +297,7 @@ const elementSmoothHide = (elem, fadeInterval = 8) => {
       clearInterval(tempInterval);
     };
   }, fadeInterval);
-  };
+};
 
 const elementSmoothPopup = (elem, popUpInterval = 10, popUpDuration = 300) => {
   setTimeout(() => {
@@ -305,6 +306,30 @@ const elementSmoothPopup = (elem, popUpInterval = 10, popUpDuration = 300) => {
     if (elem.style.opacity >= 1) clearInterval(tempInterval);
     }, popUpInterval);
  }, popUpDuration);
+}; */
+
+const elementSmoothHide = (elem, fadeRate = 1.25) => {
+  const tempStartTime = Date.now();
+  elem.style.opacity = 1;
+  const elementSmoothHideInner = () => {
+    const tempCurrentTime = Date.now();
+    if (elem.style.opacity >= 0) elem.style.opacity = 1 - ((tempCurrentTime - tempStartTime)/1000) * fadeRate;
+    window.requestAnimationFrame(elementSmoothHideInner);
+  };
+  elementSmoothHideInner();
+};
+
+const elementSmoothPopup = (elem, popUpRate = 4, popUpDelay = 300) => {
+  setTimeout(() => {
+    const tempStartTime = Date.now();
+    elem.style.opacity = 0;
+    const elementSmoothPopupInner = () => {
+      const tempCurrentTime = Date.now();
+      if (elem.style.opacity <= 1) elem.style.opacity = ((tempCurrentTime - tempStartTime)/1000) * popUpRate;
+      window.requestAnimationFrame(elementSmoothPopupInner);
+    };
+    elementSmoothPopupInner();
+  }, popUpDelay);
 };
 
 const eventRandomPickFromEventsArray = () => {
@@ -318,7 +343,7 @@ const eventRandomPickFromEventsArray = () => {
         <span class="running-line" id="running-line-${currentRunningLineTimestamp}">${currentRandomEventText}</span>  
       `);
       setTimeout(() => {
-        elementSmoothHide(document.getElementById(`running-line-${currentRunningLineTimestamp}`), 15)}
+        elementSmoothHide(document.getElementById(`running-line-${currentRunningLineTimestamp}`), 0.5)}
         , 3000);
     };
 
