@@ -302,7 +302,7 @@ const elementSmoothPopup = (elem, popUpInterval = 10, popUpDuration = 300) => {
   setTimeout(() => {
     const tempInterval = setInterval(() => {
     elem.style.opacity = Number(elem.style.opacity) + 0.05;
-    if (elem.style.opacity == 1) clearInterval(tempInterval);
+    if (elem.style.opacity >= 1) clearInterval(tempInterval);
     }, popUpInterval);
  }, popUpDuration);
 };
