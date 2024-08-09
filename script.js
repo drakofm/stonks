@@ -308,6 +308,7 @@ const elementSmoothPopup = (elem, popUpInterval = 10, popUpDuration = 300) => {
  }, popUpDuration);
 }; */
 
+// 1) пропала разница таймингов между Chrome и Firefox (видимо, из-за разницы реализации setInterval() в движках); 2) помнить, что (если я правильно понимаю) requestAnimationFrame() завязана на частоте обновления экрана, поэтому fadeRate/popUpRate будут давать разный результат на устройствах с различающейся частотой обновления экрана.
 const elementSmoothHide = (elem, fadeRate = 1.25) => {
   const tempStartTime = Date.now();
   elem.style.opacity = 1;
