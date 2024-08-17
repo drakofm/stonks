@@ -358,7 +358,7 @@ const eventRandomPickFromEventsArray = () => {
 
 
       // TODO: переделать из дерева if-ов в handler, принимающий в качестве аргументов type и subtype и работаюищий уже с ними
-
+      // TODO: стоит сделать задержку перед активацией события на время прочтения новости о нём, хотя бы в 1 секунду. Пробовал поставить setTimeout внутри функций ниже, но тогда совсем рушится синхронность этих изменений с естественным изменением цены, это тудушка на после решения проблемы рассинхрона
       if (currentRandomEventType == 'increase') {  
         if (currentRandomEventSubtype == 'sharp') {
           const tempRandomEventInterval = setInterval(() => {

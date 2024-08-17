@@ -12,18 +12,12 @@ header {
   position: fixed;
   display: flex;
   flex-direction: column-reverse;
-  overflow: hidden;
   padding: 5px;
-  /* display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
-  align-items: center; */
 }
 
 .running-line {
   display: block;
   text-align: center;
-  overflow-y: hidden;
 }
 
 main {
