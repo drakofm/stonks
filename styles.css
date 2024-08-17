@@ -12,7 +12,7 @@ header {
   position: fixed;
   display: flex;
   flex-direction: column-reverse;
-  flex-wrap: nowrap;
+  overflow: hidden;
   padding: 5px;
   /* display: grid;
   grid-template-columns: repeat(3, 1fr);

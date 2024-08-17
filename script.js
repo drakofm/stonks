@@ -314,8 +314,12 @@ const elementSmoothHide = (elem, fadeRate = 1.25) => {
   elem.style.opacity = 1;
   const elementSmoothHideInner = () => {
     const tempCurrentTime = Date.now();
-    if (elem.style.opacity >= 0) elem.style.opacity = 1 - ((tempCurrentTime - tempStartTime)/1000) * fadeRate;
-    window.requestAnimationFrame(elementSmoothHideInner);
+    if (elem.style.opacity >= 0) {
+      elem.style.opacity = 1 - ((tempCurrentTime - tempStartTime)/1000) * fadeRate;
+      window.requestAnimationFrame(elementSmoothHideInner);
+    } else {
+      elem.remove();
+    };
   };
   elementSmoothHideInner();
 };
