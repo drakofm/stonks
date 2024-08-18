@@ -1,6 +1,10 @@
+// TODO: адаптивный дизайн!
+// TODO: тёмная/светлая темы
+// TODO: переключение языка рус/eng
 const productCardsContainer = document.getElementById('container-product-cards');
 const header = document.getElementById('header');
 const companies = [
+  // TODO: для удобства кода стоит отрефакторить его таким образом, чтобы это был не массив объектов, а объект с ключами-idшниками, значения которых уже будут этими самыми объектами - предположительно, так будет сильно проще обращаться к объекту, чем имеющееся. 
   {
     id: 0,
     name: 'Heffalump M&E',
@@ -139,6 +143,7 @@ companies.forEach(({id, name, ticker, initPrice, info, infoRus, industry}) => {
   </article>
   `
 })
+// TODO: было бы классно сделать графики, но при поверхностном изучении проблемы я вижу, что это задача на порядок сложнее сделанного, и, скорее всего, разумно будет воспользоваться готовой библиотекой, чем писать на голом JS, а также разумно будет вернуться к этому, когда прошарюсь в этой теме, чтобы не тратить бесконечно много времени
 document.getElementById('product-4').insertAdjacentHTML('afterend', `
     <article id="control-panel">
       <section id="control-panel__shares-set-bar"></section>
