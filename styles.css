@@ -218,6 +218,38 @@ footer {
 
   /* Первая краевая точка - грид (2, 1fr) начинает кривиться и не влезать. Тут уже пора переходить на совершенно мобильную версию */
 
+  /* Надо пересадить все величины на относительные, чтобы не было супермелко на телефонах */
+
+  main {
+    display: flex;
+    align-items: center;
+  }
+
+  #button-scroll-left {
+    background: url(./img/scroll-arrow-left.png);
+  }
+
+  #button-scroll-right {
+    background: url(./img/scroll-arrow-right.png);
+    
+  }
+
+  #button-scroll-left,
+  #button-scroll-right {
+    border: none;
+    background-size: 5vh;
+    width: 5vh; 
+    height: 5vh;
+    padding: 2vw;
+    opacity: 0.1;
+    transition: all 0.2s;
+  }
+
+  #button-scroll-left:hover,
+  #button-scroll-right:hover {
+    opacity: 0.3;
+  }
+
   #container-product-cards {
     display: flex;
     height: 56vh;
@@ -233,13 +265,7 @@ footer {
     margin: 20px;
   }
 
-  #container-product-cards::before {
-    content: '<';
-  }
-
-  #container-product-cards::after {
-    content: '>';
-  }
+  
   
   #control-panel {
     position: fixed;

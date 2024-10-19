@@ -420,3 +420,22 @@ const globalTimer = setInterval(() => {
   controlPanelCurrentPortfolioPrice.style.color = previousMarketPrice > portfolio.marketPrice ? 'rgb(100, 0, 0)' : previousMarketPrice < portfolio.marketPrice ? 'rgb(0, 100, 0)' : 'black';
   
 }, 1000);
+
+// adaptive for width < 1164px
+
+if (document.body.offsetWidth <= 1164) {
+  document.body.querySelector('main').insertAdjacentHTML('afterbegin', 
+    `<button id="button-scroll-left"></button>`
+  );
+  document.body.querySelector('main').insertAdjacentHTML('beforeend', 
+    `<button id="button-scroll-right"></button>`
+  );
+
+  document.querySelector('#button-scroll-left').addEventListener('click', () => {
+    document.querySelector('#container-product-cards').scrollLeft -= 200;
+  });
+
+  document.querySelector('#button-scroll-right').addEventListener('click', () => {
+    document.querySelector('#container-product-cards').scrollLeft += 200;
+  });
+};
