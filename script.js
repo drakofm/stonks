@@ -433,35 +433,39 @@ if (document.body.offsetWidth <= 1164) {
     `<button id="button-scroll-right"></button>`
   );
 
-  document.querySelector('#button-scroll-left').addEventListener('click', () => {
-    const scrollingElement = document.querySelector('#container-product-cards');
-    setTimeout(() => {
-      const tempStartTime = Date.now();
-      const initialScroll = scrollingElement.scrollLeft;
-      const smoothScrolling = () => {
-        const tempCurrentTime = Date.now();
-        if (scrollingElement.scrollLeft > (initialScroll - 290) && scrollingElement.scrollLeft > 0) {
-          scrollingElement.scrollLeft -= ((tempCurrentTime - tempStartTime)/2);
-          window.requestAnimationFrame(smoothScrolling);
-        };
-      };
-      smoothScrolling();
-    }, 0);
-  });
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent) ? true : false;
 
-  document.querySelector('#button-scroll-right').addEventListener('click', () => {
-    const scrollingElement = document.querySelector('#container-product-cards');
-    setTimeout(() => {
-      const tempStartTime = Date.now();
-      const initialScroll = scrollingElement.scrollLeft;
-      const smoothScrolling = () => {
-        const tempCurrentTime = Date.now();
-        if (scrollingElement.scrollLeft < (initialScroll + 290) && scrollingElement.scrollLeft < (scrollingElement.scrollWidth - scrollingElement.clientWidth)) {
-          scrollingElement.scrollLeft += ((tempCurrentTime - tempStartTime)/2);
-          window.requestAnimationFrame(smoothScrolling);
+  if (!isMobile) {
+    document.querySelector('#button-scroll-left').addEventListener('click', () => {
+      const scrollingElement = document.querySelector('#container-product-cards');
+      setTimeout(() => {
+        const tempStartTime = Date.now();
+        const initialScroll = scrollingElement.scrollLeft;
+        const smoothScrolling = () => {
+          const tempCurrentTime = Date.now();
+          if (scrollingElement.scrollLeft > (initialScroll - 290) && scrollingElement.scrollLeft > 0) {
+            scrollingElement.scrollLeft -= ((tempCurrentTime - tempStartTime)/2);
+            window.requestAnimationFrame(smoothScrolling);
+          };
         };
-      };
-      smoothScrolling();
-    }, 0);
-  });
+        smoothScrolling();
+      }, 0);
+    });
+
+    document.querySelector('#button-scroll-right').addEventListener('click', () => {
+      const scrollingElement = document.querySelector('#container-product-cards');
+      setTimeout(() => {
+        const tempStartTime = Date.now();
+        const initialScroll = scrollingElement.scrollLeft;
+        const smoothScrolling = () => {
+          const tempCurrentTime = Date.now();
+          if (scrollingElement.scrollLeft < (initialScroll + 290) && scrollingElement.scrollLeft < (scrollingElement.scrollWidth - scrollingElement.clientWidth)) {
+            scrollingElement.scrollLeft += ((tempCurrentTime - tempStartTime)/2);
+            window.requestAnimationFrame(smoothScrolling);
+          };
+        };
+        smoothScrolling();
+      }, 0);
+    });
+  };
 };
