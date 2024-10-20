@@ -219,7 +219,7 @@ footer {
   /* Первая краевая точка - грид (2, 1fr) начинает кривиться и не влезать. Тут уже пора переходить на совершенно мобильную версию */
 
   /* Надо пересадить все величины на относительные, чтобы не было супермелко на телефонах */
-
+  
   main {
     display: flex;
     align-items: center;
@@ -237,9 +237,7 @@ footer {
   #button-scroll-left,
   #button-scroll-right {
     border: none;
-    background-size: 5vh;
-    width: 5vh; 
-    height: 5vh;
+    background-size: 5vw;
     padding: 2vw;
     opacity: 0.1;
     transition: all 0.2s;
@@ -252,7 +250,7 @@ footer {
 
   #container-product-cards {
     display: flex;
-    height: 56vh;
+    height: 48vh;
     width: 80vw;
     overflow-x: scroll;
     scrollbar-width: none;
@@ -260,24 +258,54 @@ footer {
   }
   
   .product-card {
-    min-width: 300px;
-    min-height: 200px;
-    margin: 20px;
+    min-width: min(300px, 60%);
+    height: min(200px, 100%);
+    margin: 2vw;
   }
 
-  
+  .product-card__name,
+  .product-card__ticker {
+    font-size: max(14px, 2vw);
+  }
+
+  .product-card__info-section,
+  #control-panel__balance-section__current-portfolio-price {
+    font-size: max(14px, 1.6vw);
+  }
+
+  #control-panel__balance-section__balance {
+    font-size: max(18px, 3vw);
+  }
+
+  .product-card__button {
+    margin: 5px 2px;
+    width: min(72px, 14vw);
+    height: min(72px, 14vw);
+    font-size: 20px;
+  }
   
   #control-panel {
     position: fixed;
+    left: 5vw;
+    right: 5vw;
     bottom: 5vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 650px;
-    height: 200px;
-    border: 1px solid darkblue;
-    background-color: rgba(252, 247, 255, 0.75);
-    margin: 20px;
+    width: 80%;
+    height: 30vh;
+  }
+
+  #control-panel__shares-set-bar {
+    display: flex;
+    gap: 1vw;
+    font-size: 1.8vw;
+  }
+
+  #control-panel__balance-section__outcome,
+  #control-panel__balance-section__income,
+  #control-panel__log {
+    font-size: 4vw;
   }
 }
