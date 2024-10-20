@@ -7,8 +7,8 @@
 
 #bg-image {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   z-index: -1;
   background-image: url(./img/bg-image-jpg.jpg);
   background-size: cover;
@@ -46,6 +46,8 @@ main {
   grid-template-columns: repeat(4, 1fr);
   justify-items: center;
   text-align: center;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 .product-card {
@@ -197,12 +199,11 @@ footer {
 }
 
 
-@media screen and (max-width: 1652px) {
+@media screen and (max-width: 1734px) {
 
   /* Первая краевая точка - грид (4, 1fr) начинает кривиться и не влезать */
 
   #container-product-cards {
-    display: grid;
     height: 80vh;
     width: 60vw;
     grid-template-columns: repeat(2, 1fr);
@@ -219,10 +220,14 @@ footer {
   /* Первая краевая точка - грид (2, 1fr) начинает кривиться и не влезать. Тут уже пора переходить на совершенно мобильную версию */
 
   /* Надо пересадить все величины на относительные, чтобы не было супермелко на телефонах */
-  
+
+  header {
+    height: max(42px, 10vh);
+  }
   main {
     display: flex;
     align-items: center;
+    padding-top: 16vh;
   }
 
   #button-scroll-left {
@@ -250,7 +255,8 @@ footer {
 
   #container-product-cards {
     display: flex;
-    height: 48vh;
+    height: 54vh;
+    height: 42vh;
     width: 80vw;
     overflow-x: scroll;
     scrollbar-width: none;
@@ -258,19 +264,28 @@ footer {
   }
   
   .product-card {
-    min-width: min(300px, 60%);
-    height: min(200px, 100%);
+    min-width: min(300px, 70%);
+    height: 80%;
+    max-height: 200px;
+    min-height: 125px;
     margin: 2vw;
   }
 
-  .product-card__name,
-  .product-card__ticker {
+  .product-card__name {
     font-size: max(14px, 2vw);
   }
 
-  .product-card__info-section,
+  .product-card__ticker {
+    font-size: max(12px, 1.6vw);
+    padding: 0.4vh;
+  }
+
   #control-panel__balance-section__current-portfolio-price {
     font-size: max(14px, 1.6vw);
+  }
+
+  .product-card__info-section {
+    font-size: max(12px, 1.4vw);
   }
 
   #control-panel__balance-section__balance {
@@ -279,33 +294,38 @@ footer {
 
   .product-card__button {
     margin: 5px 2px;
-    width: min(72px, 14vw);
-    height: min(72px, 14vw);
+    width: max(56px, 7vw);
+    height: max(56px, 7vw);
     font-size: 20px;
+  }
+
+  .product-card__name {
+    margin: 3vh 0 2vh 0;
   }
   
   #control-panel {
     position: fixed;
-    left: 5vw;
-    right: 5vw;
-    bottom: 5vh;
+    left: 1vw;
+    right: 1vw;
+    bottom: 4vh;
+    width: 90%;
+    height: 24vh;
+    min-height: 124px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
-    height: 30vh;
   }
 
   #control-panel__shares-set-bar {
     display: flex;
     gap: 1vw;
-    font-size: 1.8vw;
+    font-size: 1.6vw;
   }
 
   #control-panel__balance-section__outcome,
   #control-panel__balance-section__income,
   #control-panel__log {
-    font-size: 4vw;
+    font-size: min(4vw, 3.5vh);
   }
 }
