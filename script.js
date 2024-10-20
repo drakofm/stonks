@@ -421,7 +421,9 @@ const globalTimer = setInterval(() => {
   
 }, 1000);
 
-// adaptive for width < 1164px
+
+
+/* adaptive for screen width < 1164px */
 
 if (document.body.offsetWidth <= 1164) {
   document.body.querySelector('main').insertAdjacentHTML('afterbegin', 
@@ -432,10 +434,34 @@ if (document.body.offsetWidth <= 1164) {
   );
 
   document.querySelector('#button-scroll-left').addEventListener('click', () => {
-    document.querySelector('#container-product-cards').scrollLeft -= 200;
+    const scrollingElement = document.querySelector('#container-product-cards');
+    setTimeout(() => {
+      const tempStartTime = Date.now();
+      const initialScroll = scrollingElement.scrollLeft;
+      const smoothScrolling = () => {
+        const tempCurrentTime = Date.now();
+        if (scrollingElement.scrollLeft > (initialScroll - 290) && scrollingElement.scrollLeft > 0) {
+          scrollingElement.scrollLeft -= ((tempCurrentTime - tempStartTime)/2);
+          window.requestAnimationFrame(smoothScrolling);
+        };
+      };
+      smoothScrolling();
+    }, 0);
   });
 
   document.querySelector('#button-scroll-right').addEventListener('click', () => {
-    document.querySelector('#container-product-cards').scrollLeft += 200;
+    const scrollingElement = document.querySelector('#container-product-cards');
+    setTimeout(() => {
+      const tempStartTime = Date.now();
+      const initialScroll = scrollingElement.scrollLeft;
+      const smoothScrolling = () => {
+        const tempCurrentTime = Date.now();
+        if (scrollingElement.scrollLeft < (initialScroll + 290) && scrollingElement.scrollLeft < (scrollingElement.scrollWidth - scrollingElement.clientWidth)) {
+          scrollingElement.scrollLeft += ((tempCurrentTime - tempStartTime)/2);
+          window.requestAnimationFrame(smoothScrolling);
+        };
+      };
+      smoothScrolling();
+    }, 0);
   });
 };
