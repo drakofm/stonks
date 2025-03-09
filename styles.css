@@ -3,6 +3,8 @@
   padding: 0;
   box-sizing: border-box;
   scrollbar-width: thin;
+  font-family: "Sans-serif";
+  font-weight: 500;
 }
 
 #bg-image {
@@ -20,7 +22,7 @@ header {
   width: 100vw;
   height: min(90px, 20vh);
   background-color: rgb(223, 194, 228);
-  box-shadow: 0px 5px 5px rgb(217, 181, 223), inset 0px 5px 5px rgb(217, 181, 223);
+  box-shadow: 0px 5px 5px rgb(220, 199, 224), inset 0px 5px 5px rgb(217, 181, 223);
   position: fixed;
   display: flex;
   flex-direction: column-reverse;
@@ -55,7 +57,7 @@ main {
   display: inline;
   width: 300px;
   height: 200px;
-  border: 1px solid black;
+  border: 1px solid rgba(49, 0, 105, 0.4);
   background-color: rgba(252, 247, 255, 0.75);
   margin: 20px;
 }
@@ -69,7 +71,7 @@ main {
   justify-content: space-between;
   width: 650px;
   height: 200px;
-  border: 1px solid darkblue;
+  border: 1px solid rgba(69, 0, 139, 0.4);
   background-color: rgba(252, 247, 255, 0.75);
   margin: 20px;
 }
