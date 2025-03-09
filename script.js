@@ -352,9 +352,24 @@ const eventRandomPickFromEventsArray = () => {
       header.insertAdjacentHTML('afterbegin', `
         <span class="running-line" id="running-line-${currentRunningLineTimestamp}">${currentRandomEventText}</span>  
       `);
-      setTimeout(() => {
-        elementSmoothHide(document.getElementById(`running-line-${currentRunningLineTimestamp}`), 0.5)}
-        , 3000);
+
+      // старая имплементация с простым появлением и исчезновением через время:
+      // setTimeout(() => {
+      //   elementSmoothHide(document.getElementById(`running-line-${currentRunningLineTimestamp}`), 0.5)}
+      //   , 3000);
+  
+      const runningLine = document.getElementById(`running-line-${currentRunningLineTimestamp}`);
+      let startY = header.offsetHeight;
+      let textHeight = runningLine.offsetHeight;
+
+      const updatePosition = () => {
+        startY -= 0.25;
+        if (startY + textHeight < 0) return;
+        runningLine.style.top = `${startY}px`;
+        requestAnimationFrame(updatePosition);
+      }
+      updatePosition();
+
     };
 
     const eventRandomPickFromEventsArrayPriceChangeHandler = () => {
