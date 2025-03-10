@@ -381,22 +381,30 @@ const eventRandomPickFromEventsArray = () => {
       // TODO: стоит сделать задержку перед активацией события на время прочтения новости о нём, хотя бы в 1 секунду. Пробовал поставить setTimeout внутри функций ниже, но тогда совсем рушится синхронность этих изменений с естественным изменением цены, это тудушка на после решения проблемы рассинхрона
       if (currentRandomEventType == 'increase') {  
         if (currentRandomEventSubtype == 'sharp') {
+          tempTargetPrice.style.color = 'green';
+          tempTargetPrice.style.textShadow = '0 0 3px rgba(0, 255, 0, 0.5)';
           const tempRandomEventInterval = setInterval(() => {
             let tempPriceIncrease = Number(tempTargetPrice.textContent.replace('$', '')) * 0.05;
             tempTargetPrice.textContent = '$' + (Number(tempTargetPrice.textContent.replace('$', '')) + tempPriceIncrease).toFixed(2);
           }, 1000);
           setTimeout(() => {
+            tempTargetPrice.style.color = 'black';
+            tempTargetPrice.style.textShadow = 'none';
             clearInterval(tempRandomEventInterval);
           }, 5000);
         };
       };
       if (currentRandomEventType == 'decrease') {
         if (currentRandomEventSubtype == 'sharp') {
+          tempTargetPrice.style.color = 'red';
+          tempTargetPrice.style.textShadow = '0 0 3px rgba(255, 0, 0, 0.5)';
           const tempRandomEventInterval = setInterval(() => {
             let tempPriceDecrease = Number(tempTargetPrice.textContent.replace('$', '')) * 0.05;
             tempTargetPrice.textContent = '$' + (Number(tempTargetPrice.textContent.replace('$', '')) - tempPriceDecrease).toFixed(2);
           }, 1000);
           setTimeout(() => {
+            tempTargetPrice.style.color = 'black';
+            tempTargetPrice.style.textShadow = 'none';
             clearInterval(tempRandomEventInterval);
           }, 5000);
         };
@@ -414,6 +422,7 @@ const eventRandomPickFromEventsArray = () => {
 
     // eventRandomPickFromEventsArrayShowRunningLine();
 }
+window.onload = setTimeout(eventRandomPickFromEventsArray, 1000);
 
 
 
@@ -435,6 +444,8 @@ const globalTimer = setInterval(() => {
   controlPanelCurrentPortfolioPrice.style.color = previousMarketPrice > portfolio.marketPrice ? 'rgb(100, 0, 0)' : previousMarketPrice < portfolio.marketPrice ? 'rgb(0, 100, 0)' : 'black';
   
 }, 1000);
+
+
 
 
 
